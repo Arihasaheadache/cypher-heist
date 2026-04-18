@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Node Terminal</title>
+    <style>
+        body { 
+            background-color: #0d1117; 
+            color: #c9d1d9; 
+            font-family: 'Courier New', Courier, monospace; 
+            padding: 15px; 
+            margin: 0; 
+            font-size: 14px; 
+            height: 100vh; 
+            box-sizing: border-box; 
+            overflow-y: auto; 
+        }
+        input { 
+            background: transparent; border: none; color: #c9d1d9; 
+            font-family: 'Courier New', Courier, monospace; font-size: 14px; 
+            outline: none; width: 70%; padding: 0; margin: 0; 
+        }
+        .output { white-space: pre-wrap; margin-bottom: 5px; margin-top: 5px; }
+        .prompt-line { display: flex; align-items: center; margin-top: 2px; }
+        .prompt-text { color: #2ea043; margin-right: 8px; white-space: nowrap; font-weight: bold; }
+        .sys-info { color: #58a6ff; font-weight: bold; }
+        .ascii-art { color: #8b949e; white-space: pre; font-size: 12px; font-weight: bold; line-height: 1.2; }
+        .flex-row { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div id="console">
+        <div class="flex-row">
+            <div class="ascii-art">
+   |\__/,|   (`\
+   |_ _  |.--.) )
+   ( T   )     /
+  (((^_(((/(((_/
+            </div>
+            <div>
+                <div class="sys-info">hunter@node-77</div>
+                <div>----------------</div>
+                <div><b>OS:</b> Ubuntu 24.04.1 LTS x86_64</div>
+                <div><b>Kernel:</b> Linux 6.8.0-generic</div>
+                <div><b>Uptime:</b> 1337 days, 4 hours</div>
+                <div><b>Shell:</b> bash 5.2.21</div>
+                <div><b>Terminal:</b> tty1</div>
+                <div><b>Memory:</b> 512MiB / 8192MiB</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="prompt-line" id="input-container">
+        <span class="prompt-text">user@hunt:~$</span>
+        <input type="text" id="cmd" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
+    </div>
+
+    <script src="terminal.js"></script>
+</body>
+</html>
