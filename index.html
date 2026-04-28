@@ -2,60 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Node Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raft Terminal Command Line</title>
     <style>
-        body { 
-            background-color: #0d1117; 
-            color: #c9d1d9; 
-            font-family: 'Courier New', Courier, monospace; 
-            padding: 15px; 
-            margin: 0; 
-            font-size: 14px; 
-            height: 100vh; 
+        body {
+            background-color: black;
+            color: #00ff00; /* Classic terminal green */
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            margin: 0;
+            font-size: 18px;
+            height: 100vh;
+            width: 100vw;
             box-sizing: border-box; 
             overflow-y: auto; 
         }
-        input { 
-            background: transparent; border: none; color: #c9d1d9; 
-            font-family: 'Courier New', Courier, monospace; font-size: 14px; 
-            outline: none; width: 70%; padding: 0; margin: 0; 
+
+        #terminal-output p, #terminal-output pre {
+            margin: 5px 0;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap; 
         }
-        .output { white-space: pre-wrap; margin-bottom: 5px; margin-top: 5px; }
-        .prompt-line { display: flex; align-items: center; margin-top: 2px; }
-        .prompt-text { color: #2ea043; margin-right: 8px; white-space: nowrap; font-weight: bold; }
-        .sys-info { color: #58a6ff; font-weight: bold; }
-        .ascii-art { color: #8b949e; white-space: pre; font-size: 12px; font-weight: bold; line-height: 1.2; }
-        .flex-row { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+
+        /* Shared class for both input phases */
+        .input-line {
+            display: none; 
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .prompt {
+            margin-right: 10px;
+            white-space: pre; 
+        }
+
+        /* Styling for both inputs */
+        input[type="text"] {
+            background-color: transparent;
+            color: #00ff00; /* Default to green */
+            border: none;
+            outline: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            flex-grow: 1;
+        }
     </style>
 </head>
 <body>
-    <div id="console">
-        <div class="flex-row">
-            <div class="ascii-art">
-   |\__/,|   (`\
-   |_ _  |.--.) )
-   ( T   )     /
-  (((^_(((/(((_/
-            </div>
-            <div>
-                <div class="sys-info">hunter@node-77</div>
-                <div>----------------</div>
-                <div><b>OS:</b> Ubuntu 24.04.1 LTS x86_64</div>
-                <div><b>Kernel:</b> Linux 6.8.0-generic</div>
-                <div><b>Uptime:</b> 1337 days, 4 hours</div>
-                <div><b>Shell:</b> bash 5.2.21</div>
-                <div><b>Terminal:</b> tty1</div>
-                <div><b>Memory:</b> 512MiB / 8192MiB</div>
-            </div>
-        </div>
-    </div>
+
+    <div id="terminal-output"></div>
     
-    <div class="prompt-line" id="input-container">
-        <span class="prompt-text">user@hunt:~$</span>
-        <input type="text" id="cmd" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus>
+    <div id="password-line" class="input-line">
+        <span class="prompt">pink@kimchi password:</span>
+        <input type="text" id="password-input" style="color: transparent;" autocomplete="off">
     </div>
 
-    <script src="terminal.js"></script>
+    <div id="command-line" class="input-line">
+        <span class="prompt">pink@kimchi $:</span>
+        <input type="text" id="command-input" autocomplete="off">
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
