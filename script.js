@@ -1,16 +1,18 @@
-const outputDiv = document.getElementById('terminal-output');
+/**
+========================= BACKEND CODE =============================
+If you're reading this, you are too smart for your own good buddy. It is deep but it isn't this deeep, get back to the website and keep searching
 
-// Phase 1 Elements
+========================= :p =======================================
+**/
+
+const outputDiv = document.getElementById('terminal-output');
 const passwordLine = document.getElementById('password-line');
 const passwordInput = document.getElementById('password-input');
-
-// Phase 2 Elements
 const commandLine = document.getElementById('command-line');
 const commandInput = document.getElementById('command-input');
 
 let currentPhase = 1;
 
-// Phase 1 Boot Sequence
 const bootMessages = [
     "Initialising SSH module...",
     "Setting reverse map node...",
@@ -32,7 +34,6 @@ async function runBootSequence() {
     passwordInput.focus();
 }
 
-// Utility to safely clear the screen based on active phase
 function clearScreen() {
     if (currentPhase === 1 && passwordLine.parentNode === outputDiv) {
         outputDiv.removeChild(passwordLine);
@@ -54,7 +55,6 @@ function printPre(text) {
     outputDiv.appendChild(pre);
 }
 
-// Start Phase 2: Swap the elements completely
 function startPhase2() {
     currentPhase = 2;
     clearScreen(); 
@@ -63,17 +63,17 @@ function startPhase2() {
 ` /\\_/\\   OS: Pink Linux 29.04
 ( o.o )  Kernel: Linux RISP 0.1
  > ^ <   Memory: 9.2G  / 128G
-         Files: 4`;
+         Drive: 0.20GiB / 1024 GiB (ext4)
+         File_Node_Share_Status: L Bozo`;
 
     printPre(fastfetchCat);
-    
-    // Display and inject the Phase 2 command line element
+
     commandLine.style.display = 'flex';
     outputDiv.appendChild(commandLine);
     commandInput.focus();
 }
 
-// --- CONSTANTS & DATA ---
+
 const fileList = [
     "key.txt", "location.node", "config.sys", "notes.log", "data.db", 
     "auth.sh", "backup.tar.gz", "readme.md", "image_01.png", "image_02.png",
@@ -81,7 +81,7 @@ const fileList = [
     "temp_cache", "logs_old.zip", "network.cfg", "users.json", "manifest.xml"
 ];
 
-// --- HELPER FUNCTIONS ---
+
 function generateNonsense(length) {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=";
     let result = "";
@@ -91,14 +91,14 @@ function generateNonsense(length) {
     return result;
 }
 
-// --- PHASE 3 PLACEHOLDER FUNCTIONS ---
+
 function cmd_ls(args) { return fileList.join("    "); }
 function cmd_cd(args) { return "Cannot change directory. Error: Static filesystem"; }
 function cmd_cat(args) { if (args.length === 0) return "Usage: cat <filename>";
     
     const filename = args[0];
 
-    // 1. Handle key.txt
+
     if (filename === "key.txt") {
         return `In the modern era, our lives are partitioned into digital silos—bank accounts, medical records, social media archives, and professional correspondences.
  Each of these silos is guarded by a gatekeeper that is as fragile as it is ubiquitous: the password. While the concept of a "secret word" for entry dates back to ancient military watchwords, its digital incarnation has become the primary battleground for personal privacy. 
@@ -109,7 +109,7 @@ In the digital world, where data is fluid and easily replicated, the "lock" is e
 `;
     }
 
-    // 2. Handle location.node
+
     if (filename === "location.node") {
         const password = prompt("ENTER ACCESS KEY:");
         if (password === "pinkisreal") {
@@ -132,15 +132,15 @@ In the digital world, where data is fluid and easily replicated, the "lock" is e
         }
     }
 
-    // 3. Handle other files in the list
+
     if (fileList.includes(filename)) {
         return generateNonsense(200);
     }
 
-    // 4. File not found
+
     return `cat: ${filename}: No such file or directory`; }
 
-// --- TERMINAL COMMAND FUNCTIONS ---
+
 function cmd_pwd(args) { return "/home/pink"; }
 function cmd_whoami(args) { return "pink"; }
 function cmd_date(args) { return new Date().toString(); }
@@ -208,9 +208,6 @@ function processCommand(input) {
     }
 }
 
-// --- EVENT LISTENERS ---
-
-// Phase 1 Listener (Password)
 passwordInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         const inputVal = passwordInput.value;
@@ -227,7 +224,7 @@ passwordInput.addEventListener('keydown', function(event) {
     }
 });
 
-// Phase 2 Listener (Commands)
+
 commandInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         const inputVal = commandInput.value;
@@ -242,7 +239,6 @@ commandInput.addEventListener('keydown', function(event) {
     }
 });
 
-// Global Click Focus
 document.addEventListener('click', () => {
     if (currentPhase === 1 && passwordLine.style.display === 'flex') {
         passwordInput.focus();
